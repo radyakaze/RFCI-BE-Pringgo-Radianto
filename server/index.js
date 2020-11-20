@@ -12,15 +12,23 @@ fastify.addHook('onResponse', (request, reply, done) => {
     reply.raw.statusCode >= 200 && reply.raw.statusCode < 300
       ? 'Success'
       : 'Failed';
-  const method = request.method;
+
   const url = `http://${request.headers.host}${request.url}`;
+
+  // Remove default header
+  const defaultHeader = ['accept', 'content-type', 'user-agent', 'content-length', 'host', 'connection'];
+  const headers = Object.fromEntries(
+    Object.entries(request.headers)
+      .filter(([key, value]) => !defaultHeader.includes(key))
+      .map(([key, value]) => [key.toUpperCase(), value])
+  );
   const data = JSON.stringify({
     ...request.body,
-    'X-RANDOM': request.headers['x-random'],
+    ...headers
   });
 
   // Log format
-  const log = util.format('[%s] %s: %s %s %s', date, status, method, url, data);
+  const log = util.format('[%s] %s: %s %s %s', date, status, request.method, url, data);
 
   // Append file
   fs.appendFile('./server.log', log + os.EOL, function (err) {
