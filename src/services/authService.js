@@ -4,6 +4,6 @@ function redirectUri() {
     return `${config.oauthUrl}/authorize?client_id=${config.clientId}`;
   }
 
-module.export = {
+module.exports = {
     redirectUri: redirectUri
 }

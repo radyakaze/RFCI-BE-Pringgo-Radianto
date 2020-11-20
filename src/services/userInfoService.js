@@ -2,9 +2,9 @@ const axios = require("axios");
 const config = require("../config");
 
 function getUserInfo(token) {
-    axios({
+    return axios({
         method: "get",
-        url: `${config.apiUrl}/users`,
+        url: `${config.apiUrl}/user`,
         headers: {
           Authorization: "token " + token,
         },
@@ -13,4 +13,4 @@ function getUserInfo(token) {
       });
   }
 
-module.export = getUserInfo
+module.exports = { getUserInfo }
