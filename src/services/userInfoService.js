@@ -13,4 +13,4 @@ function getUserInfo(token) {
       });
   }
 
-module.exports = { getUserInfo }
+module.exports.getUserInfo = getUserInfo
