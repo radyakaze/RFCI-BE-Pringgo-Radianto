@@ -37,3 +37,11 @@ npm run start:client # atau node client/index.js
 
 Server log berada di `./server.log`
 
+## 3. Simple App Debugging
+Source Code berada pada branch [codedebugging](https://github.com/radyakaze/RFCI-BE-Pringgo-Radianto/tree/codedebugging)
+
+Clone
+```bash
+git clone -b codedebugging https://github.com/radyakaze/RFCI-BE-Pringgo-Radianto.git
+```
+
