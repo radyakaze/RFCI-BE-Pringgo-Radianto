@@ -1,0 +1,17 @@
+{
+  "name": "refactory-test",
+  "version": "1.0.0",
+  "description": "Interview Test Refactory",
+  "main": "server/index.js",
+  "scripts": {
+    "start:server": "node server/index.js",
+    "start:client": "node client/index.js"
+  },
+  "author": "Pringgo Radianto",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.21.0",
+    "dayjs": "^1.9.6",
+    "fastify": "^3.8.0"
+  }
+}
