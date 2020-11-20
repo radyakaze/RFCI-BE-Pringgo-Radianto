@@ -23,10 +23,12 @@ API_URL=https://api.github.com
 ```
 `OAUTH_URL` dan `API_URL` berdasarkan dokumentasi github. [Link](https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/)
 
-### Perbaikan pada config
+
+
+### 1. Perbaikan pada config
 Lokasi file: `./src/config/index.js`
 
-#### Pindahkan variable setelah setelah init dotenv, agar bisa membaca file .env
+#### 1.1. Pindahkan variable setelah setelah init dotenv, agar bisa membaca file .env
 ```javascript
 const config = {
     port: process.env.PORT,
@@ -45,22 +47,26 @@ if (envFound.error) {
 }
 ```
 
-### Perbaikan pada Auth Service
+
+
+### 2. Perbaikan pada Auth Service
 Lokasi File: `./src/services/authService.js`
 
-#### Ubah baris kode `module.export` menjadi `module.exports`
+#### 2.1. Ubah baris kode `module.export` menjadi `module.exports`
 
-### Perbaikan pada User Info Service
+
+
+### 3. Perbaikan pada User Info Service
 Lokasi File: `./src/services/userInfoService.js`
 
-#### Tambahkan return pada function `getUserInfo`
+#### 3.1. Tambahkan return pada function `getUserInfo`
 ```javascript
 function getUserInfo(token) {
     return axios({ ... })
 }
 ```
 
-#### Ubah pada endpoint api dari `users` menjadi `user`, untuk mendapatkan user info
+#### 3.2. Ubah pada endpoint api dari `users` menjadi `user`, untuk mendapatkan user info
 ```javascript
 axios {
     ...
@@ -79,7 +85,7 @@ axios {
 
 Sumber: [Dokumentasi Github](https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/#3-your-github-app-accesses-the-api-with-the-users-access-token)
 
-#### Ubah baris kode `module.export` menjadi export object
+#### 3.3. Ubah baris kode `module.export` menjadi export object
 ```javascript
 module.exports = getUserInfo
 ```
@@ -88,9 +94,10 @@ Menjadi
 module.exports.getUserInfo = getUserInfo
 ```
 
-### Perbaikan pada Auth Callback Service
+### 4. Perbaikan pada Auth Callback Service
+Lokasi file: `./src/services/authCallbackService.js`
 
-#### Fix undefined `resp`
+#### 4.1. Fix undefined `resp`
 ```javascript
 .then((res) => resp.data["accessToken"])
 ```
@@ -99,7 +106,8 @@ Menjadi
 .then((resp) => resp.data["accessToken"])
 ```
 
-#### Ubah `accessToken` menjadi `access_token` pada response
+
+#### 4.2. Ubah `accessToken` menjadi `access_token` pada response
 ```javascript
 .then((resp) => resp.data["accessToken"])
 ```
@@ -110,7 +118,7 @@ Menjadi
 
 Sumber: (Dokumentasi Github)[https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/#response]
 
-#### Menggunakan promise pada User Info Service
+#### 4.3. Menggunakan promise pada User Info Service
 Dikarenakan pada User Info Service, kembalian function `getUserInfo` berbentuk promise, maka gunakan `then` untuk mengambil data
 
 ```javascript
