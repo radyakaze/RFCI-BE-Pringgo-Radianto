@@ -12,6 +12,7 @@ Code debugging built with NodeJs
 cp env .env
 ```
 3. Sesuaikan `.env` dengan aplikasi oauth github yang baru saja dibuat
+
 Contoh:
 ```
 NODE_ENV=development
@@ -116,7 +117,7 @@ Menjadi
 .then((resp) => resp.data["access_token"])
 ```
 
-Sumber: (Dokumentasi Github)[https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/#response]
+Sumber: [Dokumentasi Github](https://developer.github.com/apps/building-github-apps/identifying-and-authorizing-users-for-github-apps/#response)
 
 #### 4.3. Menggunakan promise pada User Info Service
 Dikarenakan pada User Info Service, kembalian function `getUserInfo` berbentuk promise, maka gunakan `then` untuk mengambil data
